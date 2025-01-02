@@ -1,0 +1,27 @@
+{
+    "name": "@radiantabyss/lumi-electron",
+    "version": "0.0.0",
+    "author": "radiantabyss.com",
+    "license": "ISC",
+    "eslintConfig": {
+        "root": true,
+        "env": {
+            "node": true
+        },
+        "extends": [
+            "eslint:recommended"
+        ],
+        "rules": {},
+        "parserOptions": {
+            "parser": "babel-eslint"
+        },
+        "globals": {
+            "Alert": "writable",
+            "Cookie": "writable",
+            "Item": "writable",
+            "Items": "writable",
+            "Request": "writable",
+            "Response": "writable"
+        }
+    }
+}
