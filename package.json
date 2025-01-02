@@ -23,5 +23,6 @@
             "Request": "writable",
             "Response": "writable"
         }
-    }
+    },
+    "type": "module"
 }
