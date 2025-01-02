@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 const formatErrors = function(response) {
     let errors = [];
     if ( response && response.errors ) {
@@ -50,6 +52,19 @@ const appendFormData = (formData, key, value) => {
         formData.append(key, value);
     }
 };
+
+axios.interceptors.request.use((request) => {
+    if (request.data ) {
+        if ( request.headers['Content-Type'] === 'application/x-www-form-urlencoded' ) {
+            request.data = serializeToURLEncoded(request.data).replace(/\&+$/, '');
+        }
+        else if ( request.headers['Content-Type'] === 'application/json' ) {
+            request.data = JSON.stringify(request.data);
+            request.headers['Content-Type'] = 'application/x-www-form-urlencoded';
+        }
+    }
+    return request;
+});
 
 const request = function(method, edge, payload = {}, display_errors = false, base_url = null, auth_token = null, headers = {}, upload_progress = null) {
     return new Promise((resolve, reject) => {
@@ -108,28 +123,26 @@ const request = function(method, edge, payload = {}, display_errors = false, bas
             }
         }
 
-        fetch(url, {
-            method,
+        axios(url, {
             headers,
-            body: method === 'GET' ? undefined : data,
+            method,
+            url,
+            data,
         })
-        .then(async (response) => {
-            const response_data = await response.json();
+        .then((request_response) => {
+            let response = request_response.data;
 
-            if ( edge.match(/\.json/) ) {
-                return resolve(response_data);
+            if ( response.success ) {
+                return resolve(response.data);
             }
 
-            if ( response.ok && response_data.success ) {
-                return resolve(response_data.data);
-            }
+            let errors = formatErrors(response);
 
-            const errors = formatErrors(response_data);
             if ( display_errors ) {
                 ipc_send('request:error', errors.join('<br/>'));
             }
 
-            reject(errors);
+            reject(response.data.errors);
         })
         .catch((error) => {
             let errors = [error.message];
