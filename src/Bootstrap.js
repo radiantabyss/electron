@@ -1,4 +1,4 @@
-import Str from './Support/Str';
+import Str from './Support/Str.js';
 import Request from './Request.js';
 import Response from './Response.js';
 
