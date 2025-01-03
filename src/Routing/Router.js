@@ -46,7 +46,7 @@ export default async () => {
     let Router = {
         addRoute(Route) {
             ipcMain.handle(Route.path, async (event, args) => {
-                await Route.component.run(args, event);
+                return await Route.component.run(args, event);
             });
         },
     };
