@@ -65,6 +65,14 @@ let self = {
         addRoute(path, action, middleware, name, throw_error);
     },
 
+    post(path, action, middleware = [], name = '', throw_error = true) {
+        if ( group_middleware ) {
+            middleware = middleware.concat(group_middleware);
+        }
+
+        addRoute(path, action, middleware, name, throw_error);
+    },
+
     group(middleware, callback) {
         group_middleware = middleware;
         callback();
