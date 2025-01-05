@@ -1,6 +1,6 @@
 {
     "name": "@radiantabyss/lumi-electron",
-    "version": "1.0.5",
+    "version": "1.0.6",
     "author": "radiantabyss.com",
     "license": "ISC",
     "eslintConfig": {
