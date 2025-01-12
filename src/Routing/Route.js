@@ -30,7 +30,7 @@ function addRoute(path, action, middleware, name, throw_error) {
         return;
     }
 
-    RouteFiles[__lumi_electron_route_file].push({
+    RouteFiles[__electron_route_file].push({
         name: action_name,
         component,
         path,

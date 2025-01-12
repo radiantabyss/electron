@@ -28,10 +28,10 @@ const loadModules = async () => {
 
     const files = getFilesRecursively(`${APP_PATH}/src/Routes`);
     for ( let i = 0; i < files.length; i++ ) {
-        global.__lumi_electron_route_file = path.basename(files[i]).replace(/\.js$/, '');
+        global.__electron_route_file = path.basename(files[i]).replace(/\.js$/, '');
 
-        if ( !RouteFiles[__lumi_electron_route_file] ) {
-            RouteFiles[__lumi_electron_route_file] = [];
+        if ( !RouteFiles[__electron_route_file] ) {
+            RouteFiles[__electron_route_file] = [];
         }
 
         const module_path = `file://${files[i]}`;
