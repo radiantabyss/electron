@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { app } from 'electron';
 
 function getFilesRecursively(dir) {
     const entries = fs.readdirSync(dir, { withFileTypes: true });
@@ -15,12 +16,13 @@ function getFilesRecursively(dir) {
 let Actions = {};
 
 const loadModules = async () => {
-    const files = getFilesRecursively(`${APP_PATH}/src/Domains`);
+	let app_path = app.getAppPath().replace(/\\/g, '/');
+    const files = getFilesRecursively(`${app_path}/src/Domains`);
 
     for ( let i = 0; i < files.length; i++ ) {
         let split = files[i]
             .replace(/\\/g, '/')
-            .replace(`${APP_PATH.replace(/\\/g, '/')}/src/Domains`, '')
+            .replace(`${app_path}/src/Domains`, '')
             .split('/');
 
         split.shift();

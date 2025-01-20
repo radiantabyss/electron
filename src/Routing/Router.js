@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { ipcMain } from 'electron';
+import { app, ipcMain } from 'electron';
 
 import Actions from './Actions.js';
 import Middleware from './Middleware.js';
@@ -26,7 +26,8 @@ function getFilesRecursively(dir) {
 const loadModules = async () => {
     global.Actions = await Actions();
 
-    const files = getFilesRecursively(`${APP_PATH}/src/Routes`);
+	let app_path = app.getAppPath().replace(/\\/g, '/');
+    const files = getFilesRecursively(`${app_path}/src/Routes`);
     for ( let i = 0; i < files.length; i++ ) {
         global.__electron_route_file = path.basename(files[i]).replace(/\.js$/, '');
 
