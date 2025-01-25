@@ -1,23 +1,10 @@
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
 import { app } from 'electron';
-
-function getFilesRecursively(dir) {
-    const entries = fs.readdirSync(dir, { withFileTypes: true });
-    const files = entries.flatMap((entry) => {
-        const fullPath = path.join(dir, entry.name);
-        return entry.isDirectory() ? getFilesRecursively(fullPath) : fullPath;
-    });
-
-    return files.filter(file => file.endsWith('.js'));
-}
 
 let Actions = {};
 
 const loadModules = async () => {
 	let app_path = app.getAppPath().replace(/\\/g, '/');
-    const files = getFilesRecursively(`${app_path}/src/Domains`);
+    const files = get_files_recursive(`${app_path}/src/Domains`);
 
     for ( let i = 0; i < files.length; i++ ) {
         let split = files[i]

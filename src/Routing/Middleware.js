@@ -1,22 +1,16 @@
+// MIDDLEWARE IS NOT USED AT THE MOMENT
+//
+//
+//
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-
-function getFilesRecursively(dir) {
-    const entries = fs.readdirSync(dir, { withFileTypes: true });
-    const files = entries.flatMap((entry) => {
-        const fullPath = path.join(dir, entry.name);
-        return entry.isDirectory() ? getFilesRecursively(fullPath) : fullPath;
-    });
-
-    return files.filter(file => file.endsWith('.js'));
-}
 
 let Middleware = {};
 let folder = path.resolve(path.dirname(fileURLToPath(import.meta.url)), 'src/Middleware');
 
 const loadModules = async () => {
-    const files = getFilesRecursively(folder);
+    const files = get_files_recursive(folder);
 
     for ( let i = 0; i < files.length; i++ ) {
         let split = files[i].split('/');

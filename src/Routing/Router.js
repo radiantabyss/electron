@@ -1,4 +1,3 @@
-import fs from 'fs';
 import path from 'path';
 import { app, ipcMain } from 'electron';
 
@@ -12,22 +11,12 @@ global.RouteFiles = RouteFiles;
 global.Route = Route;
 global.RouteCrud = RouteCrud;
 
-function getFilesRecursively(dir) {
-    const entries = fs.readdirSync(dir, { withFileTypes: true });
-    const files = entries.flatMap((entry) => {
-        const fullPath = path.join(dir, entry.name);
-        return entry.isDirectory() ? getFilesRecursively(fullPath) : fullPath;
-    });
-
-    return files.filter(file => file.endsWith('.js'));
-}
-
 //load route files
 const loadModules = async () => {
     global.Actions = await Actions();
 
 	let app_path = app.getAppPath().replace(/\\/g, '/');
-    const files = getFilesRecursively(`${app_path}/src/Routes`);
+    const files = get_files_recursive(`${app_path}/src/Routes`);
     for ( let i = 0; i < files.length; i++ ) {
         global.__electron_route_file = path.basename(files[i]).replace(/\.js$/, '');
 
