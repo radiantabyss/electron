@@ -2,6 +2,7 @@ import Helpers from './Support/Helpers.js';
 import Str from './Support/Str.js';
 import Request from './Request.js';
 import Response from './Response.js';
+import Validator from './Validator.js';
 
 export default async () => {
     //helpers
@@ -12,4 +13,5 @@ export default async () => {
     global.Str = Str;
     global.Request = Request;
     global.Response = Response;
+    global.Validator = Validator;
 };
