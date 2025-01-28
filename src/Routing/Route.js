@@ -1,12 +1,9 @@
 let group_middleware = null;
 
-function addRoute(path, action, middleware, name, throw_error) {
+function addRoute(method, path, action, middleware, name, throw_error) {
     if ( !action ) {
         throw `Action missing for ${path}`;
     }
-
-    //format path
-    path = path.replace(/\{([\s\S]+?)\}/g, ':$1');
 
     //get action
     action = action.replace(/\\/g, '.').replace(/\//g, '.');
@@ -33,6 +30,7 @@ function addRoute(path, action, middleware, name, throw_error) {
     RouteFiles[__electron_route_file].push({
         name: action_name,
         component,
+        method,
         path,
         meta: {
             domain,
@@ -62,7 +60,7 @@ let self = {
             middleware = middleware.concat(group_middleware);
         }
 
-        addRoute(path, action, middleware, name, throw_error);
+        addRoute('GET', path, action, middleware, name, throw_error);
     },
 
     post(path, action, middleware = [], name = '', throw_error = true) {
@@ -70,7 +68,7 @@ let self = {
             middleware = middleware.concat(group_middleware);
         }
 
-        addRoute(path, action, middleware, name, throw_error);
+        addRoute('POST', path, action, middleware, name, throw_error);
     },
 
     group(middleware, callback) {

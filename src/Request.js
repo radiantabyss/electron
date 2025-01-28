@@ -161,11 +161,11 @@ let self = {
         return request('GET', edge, payload, display_errors, base_url, auth_token, headers);
     },
 
-    post(edge, payload = {}, display_errors = false, base_url = null, auth_token = null, headers = {}) {
+    post(edge, payload = {}, display_errors = true, base_url = null, auth_token = null, headers = {}) {
         return request('POST', edge, payload, display_errors, base_url, auth_token, headers);
     },
 
-    upload(edge, payload = {}, display_errors = false, upload_progress, base_url = null, auth_token = null, headers = {}) {
+    upload(edge, payload = {}, display_errors = true, upload_progress, base_url = null, auth_token = null, headers = {}) {
         headers['Content-Type'] = 'multipart/form-data';
         return request('POST', edge, payload, display_errors, base_url, auth_token, headers, upload_progress);
     },

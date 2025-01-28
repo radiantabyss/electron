@@ -4,6 +4,10 @@ let self = {
     },
 
     error(error) {
+        if ( Array.isArray(error) ) {
+            error = error.join('\n');
+        }
+
         throw error;
     },
 }
