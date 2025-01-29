@@ -3,8 +3,43 @@ import path from 'path';
 import { BrowserWindow } from 'electron';
 
 let self = {
-    dmp(str) {
-        console.log(str);
+    dmp(text) {
+        console.log(text);
+    },
+
+    async custom_logger(e) {
+        if ( typeof e == 'object' ) {
+            e = e.toString();
+        }
+
+        let path = `${APP_PATH}/error.log`;
+        await fs.ensureFile(path);
+
+        let date = new Date();
+        let timestamp = `${date.getFullYear()}-${Str.leading_zero(date.getMonth() + 1)}-${Str.leading_zero(date.getDate())}`+
+            ` ${Str.leading_zero(date.getHours())}:${Str.leading_zero(date.getMinutes())}`;
+
+        await fs.appendFile(path, `[${timestamp}] ${e}`);
+    },
+
+    decode_json(string) {
+        if ( typeof string == 'string') {
+            return JSON.parse(string);
+        }
+
+        return string;
+    },
+
+    encode_json(array, null_if_empty = true) {
+        if ( typeof array == 'string' ) {
+            return array;
+        }
+
+        if ( array === null || !array.length ) {
+            return null_if_empty ? null : JSON.stringify([]);
+        }
+
+        return JSON.stringify(array, (key, value) => (typeof value === "string" && !isNaN(value) ? Number(value) : value));
     },
 
     ipc_send(event, args, win = null) {
