@@ -2,7 +2,7 @@ import { app } from 'electron';
 
 let Model = {};
 
-//load route files
+//load model files
 const loadModules = async () => {
 	let app_path = app.getAppPath().replace(/\\/g, '/');
     const files = get_files_recursive(`${app_path}/src/Models`);
