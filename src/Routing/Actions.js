@@ -4,12 +4,12 @@ let Actions = {};
 
 const loadModules = async () => {
 	let app_path = app.getAppPath().replace(/\\/g, '/');
-    const files = get_files_recursive(`${app_path}/src/Domains`);
+    const files = get_files_recursive(`${app_path}/app/Domains`);
 
     for ( let i = 0; i < files.length; i++ ) {
         let split = files[i]
             .replace(/\\/g, '/')
-            .replace(`${app_path}/src/Domains`, '')
+            .replace(`${app_path}/app/Domains`, '')
             .split('/');
 
         split.shift();

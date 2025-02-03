@@ -18,7 +18,7 @@ const loadModules = async () => {
     global.Actions = await Actions();
 
 	let app_path = app.getAppPath().replace(/\\/g, '/');
-    const files = get_files_recursive(`${app_path}/src/Routes`);
+    const files = get_files_recursive(`${app_path}/app/Routes`);
     for ( let i = 0; i < files.length; i++ ) {
         global.__electron_route_file = path.basename(files[i]).replace(/\.js$/, '');
 

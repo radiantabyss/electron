@@ -6,12 +6,12 @@ let ContextMenuActions = {};
 //load context menu files
 const loadModules = async () => {
 	let app_path = app.getAppPath().replace(/\\/g, '/');
-    const files = get_files_recursive(`${app_path}/src/ContextMenu`);
+    const files = get_files_recursive(`${app_path}/app/ContextMenu`);
 
     for ( let i = 0; i < files.length; i++ ) {
         let split = files[i]
             .replace(/\\/g, '/')
-            .replace(`${app_path}/src/ContextMenu`, '')
+            .replace(`${app_path}/app/ContextMenu`, '')
             .split('/');
 
         let name = split[split.length - 1].replace('.js', '');

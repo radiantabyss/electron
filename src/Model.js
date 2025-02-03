@@ -5,12 +5,12 @@ let Model = {};
 //load model files
 const loadModules = async () => {
 	let app_path = app.getAppPath().replace(/\\/g, '/');
-    const files = get_files_recursive(`${app_path}/src/Models`);
+    const files = get_files_recursive(`${app_path}/app/Models`);
 
     for ( let i = 0; i < files.length; i++ ) {
         let split = files[i]
             .replace(/\\/g, '/')
-            .replace(`${app_path}/src/Models`, '')
+            .replace(`${app_path}/app/Models`, '')
             .split('/');
 
         let name = split[split.length - 1].replace('.js', '');

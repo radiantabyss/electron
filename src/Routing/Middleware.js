@@ -7,7 +7,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 let Middleware = {};
-let folder = path.resolve(path.dirname(fileURLToPath(import.meta.url)), 'src/Middleware');
+let folder = path.resolve(path.dirname(fileURLToPath(import.meta.url)), 'app/Middleware');
 
 const loadModules = async () => {
     const files = get_files_recursive(folder);
