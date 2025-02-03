@@ -73,7 +73,7 @@ const request = function(method, edge, payload = {}, display_errors = false, bas
         }
 
         if ( !auth_token ) {
-            auth_token = Config.getKey('settings', 'jwt_token');
+            auth_token = JWT_TOKEN;
         }
 
         if ( method === 'POST' ) {
