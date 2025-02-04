@@ -13,7 +13,7 @@ const self = {
     },
 
     keyBy(items, key = 'id') {
-        let not_empty = window.handleEmpty(items);
+        let not_empty = handleEmpty(items);
         if ( not_empty !== true ) {
             return not_empty;
         }
@@ -29,7 +29,7 @@ const self = {
     },
 
     groupBy(items, key = 'id') {
-        let not_empty = window.handleEmpty(items);
+        let not_empty = handleEmpty(items);
         if ( not_empty !== true ) {
             return not_empty;
         }
@@ -50,7 +50,7 @@ const self = {
     },
 
     find(items, ids) {
-        let not_empty = window.handleEmpty(items);
+        let not_empty = handleEmpty(items);
         if ( not_empty !== true ) {
             return false;
         }
@@ -95,7 +95,7 @@ const self = {
     },
 
     findByKey(items, key, value = true, single = false) {
-        let not_empty = window.handleEmpty(items);
+        let not_empty = handleEmpty(items);
         if ( not_empty !== true ) {
             return false;
         }
@@ -130,7 +130,7 @@ const self = {
     },
 
     add(items, item, at_first_position = false) {
-        let not_empty = window.handleEmpty(items);
+        let not_empty = handleEmpty(items);
         if ( not_empty !== true ) {
             items = [];
         }
@@ -146,7 +146,7 @@ const self = {
     },
 
     addMany(items, added, at_first_position = false) {
-        let not_empty = window.handleEmpty(items);
+        let not_empty = handleEmpty(items);
         if ( not_empty !== true ) {
             items = [];
         }
@@ -171,7 +171,7 @@ const self = {
     },
 
     replace(items, item) {
-        let not_empty = window.handleEmpty(items);
+        let not_empty = handleEmpty(items);
         if ( not_empty !== true ) {
             return not_empty;
         }
@@ -193,7 +193,7 @@ const self = {
     },
 
     delete(items, ids) {
-        let not_empty = window.handleEmpty(items);
+        let not_empty = handleEmpty(items);
         if ( not_empty !== true ) {
             return not_empty;
         }
@@ -227,7 +227,7 @@ const self = {
     },
 
     deleteByKey(items, key, value) {
-        let not_empty = window.handleEmpty(items);
+        let not_empty = handleEmpty(items);
         if ( not_empty !== true ) {
             return not_empty;
         }
@@ -250,7 +250,7 @@ const self = {
     },
 
     setKeys(items, ids, keys, values) {
-        let not_empty = window.handleEmpty(items);
+        let not_empty = handleEmpty(items);
         if ( not_empty !== true ) {
             return not_empty;
         }
@@ -295,7 +295,7 @@ const self = {
     },
 
     toggleKeys(items, ids, keys) {
-        let not_empty = window.handleEmpty(items);
+        let not_empty = handleEmpty(items);
         if ( not_empty !== true ) {
             return not_empty;
         }

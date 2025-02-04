@@ -8,7 +8,7 @@ let self = {
     },
 
     setKeys(item, keys, values) {
-        let not_empty = window.handleEmpty(item);
+        let not_empty = handleEmpty(item);
         if ( not_empty !== true ) {
             item = {};
         }
