@@ -1,6 +1,6 @@
 {
     "name": "@radiantabyss/electron",
-    "version": "1.4.2",
+    "version": "1.4.3",
     "author": "radiantabyss.com",
     "license": "ISC",
     "eslintConfig": {
