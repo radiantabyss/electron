@@ -1,5 +1,7 @@
 import fs from 'fs';
 import path from 'path';
+import { exec } from 'child_process';
+import tree_kill from 'tree-kill';
 import { BrowserWindow } from 'electron';
 
 let self = {
@@ -69,7 +71,7 @@ let self = {
             return null_if_empty ? null : JSON.stringify({});
         }
 
-        return JSON.stringify(array, (key, value) => (typeof value === "string" && !isNaN(value) ? Number(value) : value));
+        return JSON.stringify(array, (key, value) => (typeof value === "string" && value !== '' && !isNaN(value) ? Number(value) : value));
     },
 
     ipc_send(event, args, win = null) {

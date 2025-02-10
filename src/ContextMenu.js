@@ -38,7 +38,7 @@ export default async (list) => {
 					throw `Context Menu Action ${item} not found.`;
 				}
 
-				items.push(ContextMenuActions[item](win));
+				items.push(ContextMenuActions[item](actions, parameters, win));
             }
 
             return items;
