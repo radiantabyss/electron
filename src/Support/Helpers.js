@@ -39,7 +39,9 @@ let self = {
         }
 
         let path = `${APP_PATH}/error.log`;
-        await fs.ensureFile(path);
+        if ( await !fs.exists(path) ) {
+            await fs.writeFile(path, '');
+        }
 
         let date = new Date();
         let timestamp = `${date.getFullYear()}-${Str.leading_zero(date.getMonth() + 1)}-${Str.leading_zero(date.getDate())}`+
