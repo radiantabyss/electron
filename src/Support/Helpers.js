@@ -100,18 +100,13 @@ let self = {
         return files.filter(file => file.endsWith('.js'));
     },
 
-    async is_folder_empty(path) {
-        if ( !await fs.exists(path) ) {
+    is_folder_empty(path) {
+        if ( !fs.existsSync(path) ) {
             return true;
         }
 
-        try {
-            const files = await fs.readdir(path);
-            return files.length === 0;
-        }
-        catch (error) {
-            throw error;
-        }
+        const files = fs.readdirSync(path);
+        return files.length === 0;
     },
 
     exec_promise(command, options = {}) {
