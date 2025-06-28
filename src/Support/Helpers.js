@@ -39,7 +39,7 @@ let self = {
         }
 
         let path = `${APP_PATH}/error.log`;
-        if ( await !fs.exists(path) ) {
+        if ( !await fs.exists(path) ) {
             await fs.writeFile(path, '');
         }
 

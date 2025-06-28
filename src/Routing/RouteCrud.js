@@ -1,3 +1,5 @@
+import Str from './../Support/Str';
+
 let self = {
     run(domain) {
         domain = domain.replace(/\\/g, '.').replace(/\//g, '.');

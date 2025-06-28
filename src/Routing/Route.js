@@ -1,3 +1,5 @@
+import Str from './../Support/Str';
+
 let group_middleware = null;
 
 function addRoute(method, path, action, middleware, name, throw_error) {

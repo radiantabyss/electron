@@ -71,10 +71,12 @@ const match = async(args, event) => {
             for (let i = 1; i < match.length; i++) {
                 params.push(match[i]);
             }
+
+            break;
         }
     }
 
-    Invoke.data = args.payload;
+    Invoked.data = args.payload;
     params.push(event);
 
     return {
